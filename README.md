@@ -63,7 +63,7 @@ Esté proyecto incluye una API RESTful para la creación e ingreso de usuarios c
     accessTokenLife: 30d
 ```
 
-### . Script para correr el proyecto en ambiente de desarrollo
+### Script para correr el proyecto en ambiente de desarrollo
 #### Arranque el proyecto en modo desarrollo con el siguiente comando, esto inicia un monitoreo de cambios con nodemon.
 
 ```
@@ -71,32 +71,178 @@ Esté proyecto incluye una API RESTful para la creación e ingreso de usuarios c
 ```
 
 ## Endpoint
-Para realizar peticiones a este sevicio, es necesario anteponer el prefijo *api* despues de la dirección del servidor, ejemplo: *http://localhost/api/*ruta_endpoint**.
+Para realizar peticiones a este sevicio es necesario anteponer el prefijo *api* despues de la dirección del servidor, ejemplo: *http://localhost/api/*ruta_endpoint**.
 
 ### Endpoints Usuario
 1. **Creación de usuario**
-- Realice una petición de tipo POST a la ruta *http://localhost:5001/api/user/create*
-- Coloque en el cuerpo de la petición en formato Json los parametros name, lastname, email, password, role, como se muestra en el siguiente ejemplo:
+- Realice una petición de tipo *POST* a la ruta *http://localhost:5001/api/user/create*
+- Coloque en el cuerpo de la petición en formato Json los parametros *name, lastname, email, password, role* como se muestra en el siguiente ejemplo:
 
+**PETICIÓN**
 ```
    {
        "name": "Juan",
        "lastname": "Perez",
        "email": "juan.perez@mail.com",
        "password": "P@ssw0rd1",
-       "role": "basico"
+       "role": "básico"
    }
 ```
+**RESPUESTA**
+```
+    {
+    "ok": true,
+    "message": "Usuario creado con exito",
+    "response": {
+        "name": "Juan",
+        "lastname": "Perez",
+        "email": "juan.perez@mail.com",
+        "password": "",
+        "role": "basico",
+        "salt": "",
+        "id": 9
+    },
+    "code": 201
+    }
+```
 
-NOTA: Los roles validos son: basico, medio, medioalto, altomedio y alto, de no colocar ningún valor en este campo el usuario se creara con el rol -basico-, los demás campos son obligatorios.
+
+*NOTA: Los roles validos son: *básico, medio, medioalto, altomedio y alto*, de no colocar ningún valor en este campo el usuario se creara con el rol *básico*, los demás campos son obligatorios.*
 
 2. **Login de usuario**
-- Realice una petición de tipo POST a la ruta *http://localhost:5001/api/user/login*
-- Coloque en el cuerpo de la petición en formato Json los parametros email, password, como se muestra en el siguiente ejemplo:
+- Realice una petición de tipo *POST* a la ruta *http://localhost:5001/api/user/login*
+- Coloque en el cuerpo de la petición en formato Json los parametros *email, password* como se muestra en el siguiente ejemplo:
 
+**PETICIÓN**
 ```
    {
        "email": "juan.perez@mail.com",
        "password": "P@ssw0rd1"
    }
 ```
+**RESPUESTA**
+```
+    {
+    "ok": true,
+    "message": "Usuario logueado con exito",
+    "response": {
+        "id": 9,
+        "name": "Juan",
+        "lastname": "Perez",
+        "email": "juan.perez@mail.com"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo5LCJuYW1lIjoiSnVhbiIsImxhc3RuYW1lIjoiUGVyZXoiLCJlbWFpbCI6Imp1YW4ucGVyZXpAbWFpbC5jb20iLCJyb2xlIjoiYmFzaWNvIn0sImlhdCI6MTY3NjUzODI2MCwiZXhwIjoxNjc5MTMwMjYwfQ.PPHzYppsXfAx5V_FsVIhHKZqN2VQG3Ole6MRF9ezQCY",
+    "code": 200
+    }
+```
+
+### Endpoint Publicaciones
+*IMPORTANTE: Para poder hacer peticiones a este endpoint, es necesario loguearse y setear en los headers de la petición, en la llave **Authorization** un token valido.*
+
+1. **Creación de publicaciones**
+- Solo podrán crear publicaciones aquellos usuarios que tengan uno de los siguientes roles: *medioalto, altomedio, alto.*
+
+- Realice una petición de tipo *POST* a la ruta *http://localhost:5001/api/publication/create* y coloque en el cuerpo de la petición lo siguiente:
+
+**PETICIÓN**
+```
+    {
+        "title": "El Amazonas",
+        "description": "Este libro habla sobre el Amazonas"
+    }
+```
+
+**RESPUESTA**
+```
+    {
+    "ok": true,
+    "message": "Publicacion creada con exito",
+    "response": {
+        "title": "El Amazonas",
+        "description": "Este libro habla sobre el Amazonas",
+        "user": {
+            "id": 1,
+            "name": "Juan",
+            "lastname": "Perez",
+            "email": "juan.perez@mail.com",
+            "role": "alto"
+        },
+        "creatorId": 1,
+        "creatorName": "Juan",
+        "creatorRole": "alto",
+        "id": 7,
+        "createdDate": "2023-02-16T09:34:29.000Z"
+    },
+    "code": 201
+}
+```
+2. **Modificación de publicaciones**
+
+- Los usuarios que tengan los roles *altomedio y alto* pueden realizar modificaciones en las publicaciones, para esto deben hacer una petición de tipo *PUT* a la ruta *http://localhost:5001/api/publication/update* y colocar en el cuerpo de la petición lo siguiente:
+
+**PETICIÓN**
+
+```
+    {
+    "id": 2,
+    "title": "El Amazonas",
+    "description": "Esta es una actualización"
+    }
+```
+
+**RESPUESTA**
+```
+    {
+    "ok": true,
+    "message": "Publicacion actualizada con exito",
+    "response": {
+        "generatedMaps": [],
+        "raw": [],
+        "affected": 1
+    },
+    "code": 200
+    }
+```
+
+3. **Obtener publicaciones**
+- Los usuarios que tengan un rol diferente a *básico* pueden obtener un consolidado de publicaciones haciendo una petición de tipo *GET* a la ruta *http://localhost:5001/api/publication/getall*.
+
+**PETICIÓN**
+
+**RESPUESTA**
+```
+    {
+    "ok": true,
+    "message": "Publicaciones recuperadas con exito!",
+    "response": [
+        {
+            "id": 2,
+            "title": "El Amazonas",
+            "description": "Esta es una actualización",
+            "createdDate": "2023-02-16T06:19:29.000Z",
+            "creatorName": "salvador",
+            "creatorRole": "alto"
+        }, 
+        "code": 200
+    }   
+```
+
+4. **Eliminar publicaciones**
+- Solo los usuarios con el rol *alto* pueden eliminar publicaciones, se debe hacer una pertición de tipo *DELETE* a la ruta *http://localhost:5001/api/publication/delete?id=*id_publicación*
+
+**PETICIÓN**
+
+**RESPUESTA**
+```
+{
+    "ok": true,
+    "message": "Publicacion eliminada con exito",
+    "response": {
+        "raw": [],
+        "affected": 1
+    },
+    "code": 200
+}
+```
+
+**NOTA: Se incluye en el repositorio la colección de Postman para realizar las pruebas pertinentes a esta API.**

@@ -207,8 +207,6 @@ Para realizar peticiones a este sevicio es necesario anteponer el prefijo *api* 
 3. **Obtener publicaciones**
 - Los usuarios que tengan un rol diferente a *básico* pueden obtener un consolidado de publicaciones haciendo una petición de tipo *GET* a la ruta *http://localhost:5001/api/publication/getall*.
 
-**PETICIÓN**
-
 **RESPUESTA**
 ```
     {
@@ -229,8 +227,6 @@ Para realizar peticiones a este sevicio es necesario anteponer el prefijo *api* 
 
 4. **Eliminar publicaciones**
 - Solo los usuarios con el rol *alto* pueden eliminar publicaciones, se debe hacer una pertición de tipo *DELETE* a la ruta *http://localhost:5001/api/publication/delete?id=*id_publicación*
-
-**PETICIÓN**
 
 **RESPUESTA**
 ```

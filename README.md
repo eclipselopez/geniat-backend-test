@@ -1,1 +1,1 @@
-<em># Prueba tecnica Geniat</em>
+<h1 align="center"># Prueba tecnica Geniat</h1>

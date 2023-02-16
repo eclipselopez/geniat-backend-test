@@ -5,13 +5,13 @@ Esté proyecto incluye una API RESTful para la creación e ingreso de usuarios c
 ## Instalación Ambiente de Desarrollo
 ### 1. Clonar repositorio
 #### Clone el repositorio con el siguiente comando.
-bash
+
   git clone https://github.com/eclipselopez/geniat-backend-test.git
 
 
 ### 2. Instalación de dependencias
 #### Una vez clonado ejecute el siguiente comando para realizar la instalación de dependencias.
-bash
+
   npm install
 
 ### 3. Configurar variables de entorno
@@ -33,7 +33,7 @@ bash
 - *jwt*.accessTokenSecret: Cadena de caracteres usada para la generación de Json Web Tokens.
 - *jwt*.accessTokenLife: Tiempo de vida del Json Web Token.
 
-yaml
+
   api:
     identifier: geniat-backend-test
     port: 5001
@@ -62,7 +62,7 @@ yaml
 ### . Script para correr el proyecto en ambiente de desarrollo
 #### Arranque el proyecto en modo desarrollo con el siguiente comando, esto inicia un monitoreo de cambios con nodemon.
 
-bash
+
   npm run dev:server
 
 
@@ -71,10 +71,10 @@ Para realizar peticiones a este sevicio, es necesario anteponer el prefijo *api*
 
 ### Endpoints Usuario
 1. *Creación de usuario*
-- Realice la petición a la ruta *http://localhost:5001/api/user/create*
+- Realice una petición de tipo POST a la ruta *http://localhost:5001/api/user/create*
 - Coloque en el cuerpo de la petición en formato Json los parametros name, lastname, email, password, role, como se muestra en el siguiente ejemplo:
 
-bash
+
    {
        "name": "Juan",
        "lastname": "Perez",
@@ -85,3 +85,13 @@ bash
 
 
 NOTA: Los roles validos son: basico, medio, medioalto, altomedio y alto, de no colocar ningún valor en este campo el usuario se creara con el rol -basico-, los demás campos son obligatorios.
+
+2. *Login de usuario*
+- Realice una petición de tipo POST a la ruta *http://localhost:5001/api/user/login*
+- Coloque en el cuerpo de la petición en formato Json los parametros email, password, como se muestra en el siguiente ejemplo:
+
+
+   {
+       "email": "juan.perez@mail.com",
+       "password": "P@ssw0rd1"
+   }

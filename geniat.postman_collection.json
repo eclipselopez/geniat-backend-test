@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "8e81a53e-7ed0-4399-a022-dbac4df6c579",
+		"name": "geniat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25060985"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "user: create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Juan\",\r\n    \"lastname\": \"Perez\",\r\n    \"email\": \"juan.perez@mail.com\",\r\n    \"password\": \"P@ssw0rd1\",\r\n    \"role\": \"basico\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user: login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"juan.perez@mail.com\",\r\n    \"password\": \"P@ssw0rd1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "publication",
+			"item": [
+				{
+					"name": "publication: read",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoic2FsdmFkb3IiLCJsYXN0bmFtZSI6ImxvcGV6IiwiZW1haWwiOiJzbG9wZXpAaG90bWFpbC5jb20iLCJyb2xlIjoiYWx0byJ9LCJpYXQiOjE2NzY1Mjc2MjUsImV4cCI6MTY3OTExOTYyNX0.p9R2Y40ViEPBG37OtJETvgsH_QIX0OJ3hXsH7koyd7Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/publication/getall",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"publication",
+								"getall"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "publication: create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoic2FsdmFkb3IiLCJsYXN0bmFtZSI6ImxvcGV6IiwiZW1haWwiOiJzbG9wZXpAaG90bWFpbC5jb20iLCJyb2xlIjoiYWx0byJ9LCJpYXQiOjE2NzY1Mjc2MjUsImV4cCI6MTY3OTExOTYyNX0.p9R2Y40ViEPBG37OtJETvgsH_QIX0OJ3hXsH7koyd7Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"El Amazonas\",\r\n    \"description\": \"Este libro habla sobre el Amazonas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/publication/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"publication",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "publication: update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoic2FsdmFkb3IiLCJsYXN0bmFtZSI6ImxvcGV6IiwiZW1haWwiOiJzbG9wZXpAaG90bWFpbC5jb20iLCJyb2xlIjoiYWx0byJ9LCJpYXQiOjE2NzY1Mjc2MjUsImV4cCI6MTY3OTExOTYyNX0.p9R2Y40ViEPBG37OtJETvgsH_QIX0OJ3hXsH7koyd7Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"title\": \"El Amazon\",\r\n    \"description\": \"Esta es una actualización\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/publication/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"publication",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "publication: delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoic2FsdmFkb3IiLCJsYXN0bmFtZSI6ImxvcGV6IiwiZW1haWwiOiJzbG9wZXpAaG90bWFpbC5jb20iLCJyb2xlIjoiYWx0byJ9LCJpYXQiOjE2NzY1Mjc2MjUsImV4cCI6MTY3OTExOTYyNX0.p9R2Y40ViEPBG37OtJETvgsH_QIX0OJ3hXsH7koyd7Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/api/publication/delete?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"publication",
+								"delete"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,4 +1,3 @@
-import 'reflect-metadata'
 import config from 'config'
 import { DataSource } from 'typeorm'
 import logger from './logger';

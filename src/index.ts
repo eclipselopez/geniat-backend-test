@@ -1,4 +1,3 @@
-import 'reflect-metadata'
 import Server from './class/server.class'
 import express from 'express'
 import cors from 'cors'
